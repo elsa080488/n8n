@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    repo: https://github.com/elsa080488/n8n
+    plan: free
+    region: singapore
+    branch: master
+    dockerfilePath: Dockerfile
+    healthCheckPath: /

@@ -1,15 +1,20 @@
-FROM n8nio/n8n:latest
+# 使用 Node 作為基礎 image
+FROM node:18-slim
 
-# 設定工作目錄（可省略）
-WORKDIR /data
+# 安裝必要工具
+RUN apt-get update && apt-get install -y python3 make g++ && apt-get clean
 
-# 啟用基本驗證（可選）
-ENV N8N_BASIC_AUTH_ACTIVE=true
-ENV N8N_BASIC_AUTH_USER=admin
-ENV N8N_BASIC_AUTH_PASSWORD=password
+# 建立工作目錄
+WORKDIR /app
 
-# 開放 port
+# 安裝 n8n
+RUN npm install n8n -g
+
+# 建立資料夾給 n8n 存設定檔與 workflows
+RUN mkdir /home/node/.n8n
+
+# 開放 n8n 預設 port
 EXPOSE 5678
 
-# 啟動指令（n8n 已經是 image 預設指令）
+# 啟動 n8n
 CMD ["n8n"]

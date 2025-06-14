@@ -1,9 +1,10 @@
 FROM n8nio/n8n
 
-ENV N8N_BASIC_AUTH_ACTIVE=true
-ENV N8N_BASIC_AUTH_USER=elsa080488
-ENV N8N_BASIC_AUTH_PASSWORD=job70538813
+# 設定工作目錄
+WORKDIR /data
 
+# 開放 port
 EXPOSE 5678
 
+# 啟動指令
 CMD ["n8n"]
